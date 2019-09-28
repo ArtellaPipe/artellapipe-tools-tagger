@@ -12,6 +12,7 @@ __license__ = "MIT"
 __maintainer__ = "Tomas Poveda"
 __email__ = "tpovedatd@gmail.com"
 
+import logging.config
 from functools import partial
 
 from Qt.QtCore import *
@@ -21,12 +22,14 @@ import tpDccLib as tp
 
 from tpQtLib.widgets import stack, splitters, breadcrumb
 
-import artellapipe
+import artellapipe.tools.tagger
 from artellapipe.gui import window
-from artellapipe.tools.tagger.core import taggerutils
+from artellapipe.utils import resource, tag
 from artellapipe.tools.tagger.widgets import taggerinfo
 
-from artellapipe.tools.tagger.core import defines
+logging.config.fileConfig(artellapipe.tools.tagger.get_logging_config(), disable_existing_loggers=False)
+logger = logging.getLogger(__name__)
+logger.setLevel(artellapipe.tools.tagger.get_logging_level())
 
 
 class ArtellaTagger(window.ArtellaWindow, object):
@@ -65,18 +68,20 @@ class ArtellaTagger(window.ArtellaWindow, object):
 
         self.resize(300, 300)
 
-        self._error_pixmap = artellapipe.resource.pixmap('error', category='icons').scaled(QSize(24, 24))
-        self._warning_pixmap = artellapipe.resource.pixmap('warning', category='icons').scaled(QSize(24, 24))
-        self._ok_pixmap = artellapipe.resource.pixmap('ok', category='icons').scaled(QSize(24, 24))
+        self._error_pixmap = resource.ResourceManager.instance().pixmap('error', category='icons').scaled(QSize(24, 24))
+        self._warning_pixmap = resource.ResourceManager.instance().pixmap('warning', category='icons').scaled(QSize(24, 24))
+        self._ok_pixmap = resource.ResourceManager.instance().pixmap('ok', category='icons').scaled(QSize(24, 24))
 
         top_layout = QHBoxLayout()
         top_layout.setContentsMargins(2, 2, 2, 2)
         top_layout.setSpacing(5)
         self.main_layout.addLayout(top_layout)
         select_tag_data_btn = QPushButton('Select Tag Data')
-        select_tag_data_btn.setIcon(artellapipe.resource.icon('tag'))
+        select_tag_data_btn.setMinimumWidth(125)
+        select_tag_data_btn.setIcon(resource.ResourceManager.instance().icon('tag'))
         remove_tag_data_btn = QPushButton('Remove Tag Data')
-        remove_tag_data_btn.setIcon(artellapipe.resource.icon('tag_remove'))
+        remove_tag_data_btn.setMinimumWidth(125)
+        remove_tag_data_btn.setIcon(resource.ResourceManager.instance().icon('tag_remove'))
         top_layout.addItem(QSpacerItem(10, 0, QSizePolicy.Expanding, QSizePolicy.Preferred))
         # export_tag_data_btn = QPushButton('Export Tag Data')
         # export_tag_data_btn.setEnabled(False)
@@ -138,7 +143,7 @@ class ArtellaTagger(window.ArtellaWindow, object):
         # ================================================================================
 
         self._tagger_info.createTagNode.connect(self._on_create_new_tag_data_node_for_current_selection)
-        select_tag_data_btn.clicked.connect(taggerutils.select_tag_data_node)
+        select_tag_data_btn.clicked.connect(tag.select_tag_data_node)
         remove_tag_data_btn.clicked.connect(self._on_remove_tag_data_node)
 
         # ================================================================================
@@ -148,7 +153,7 @@ class ArtellaTagger(window.ArtellaWindow, object):
         Removes the tag data node associated to the current selected Maya object
         """
 
-        tag_data_node = taggerutils.get_tag_data_node_from_current_selection()
+        tag_data_node = tag.get_tag_data_node_from_current_selection()
         if tag_data_node is None:
             return
         tp.Dcc.delete_object(tag_data_node)
@@ -171,7 +176,7 @@ class ArtellaTagger(window.ArtellaWindow, object):
         Function that is called each time the user changes scene selection
         """
 
-        sel = taggerutils.get_current_selection()
+        sel = tag.get_current_selection()
 
         self._update_current_info()
         self._update_ui()
@@ -183,7 +188,7 @@ class ArtellaTagger(window.ArtellaWindow, object):
         If a valid Maya object is selected, tagger tabs is show or hide otherwise
         """
 
-        if taggerutils.current_selection_has_metadata_node():
+        if tag.current_selection_has_metadata_node():
             self._stack.slide_in_index(1)
         else:
             self._stack.slide_in_index(0)
@@ -194,16 +199,16 @@ class ArtellaTagger(window.ArtellaWindow, object):
         :return:
         """
 
-        current_selection = taggerutils.get_current_selection()
+        current_selection = tag.get_current_selection()
 
         self._breadcrumb.set([current_selection])
 
         self._tagger_info.update_info()
 
-        if not taggerutils.current_selection_has_metadata_node():
+        if not tag.current_selection_has_metadata_node():
             self._curr_info_image.setPixmap(self._error_pixmap)
             return
-        if not taggerutils.check_if_current_selected_metadata_node_has_valid_info():
+        if not tag.check_if_current_selected_metadata_node_has_valid_info():
             self._curr_info_image.setPixmap(self._warning_pixmap)
             return
 
@@ -220,16 +225,16 @@ class ArtellaTagger(window.ArtellaWindow, object):
         :param asset_type: str or None (optional)
         """
 
-        current_selection = taggerutils.get_current_selection()
+        current_selection = tag.get_current_selection()
 
-        if not current_selection or current_selection == defines.SCENE_SELECTION_NAME or not tp.Dcc.object_exists(current_selection):
+        if not current_selection or current_selection == tag.TagDefinitions.SCENE_SELECTION_NAME or not tp.Dcc.object_exists(current_selection):
             current_selection = tp.Dcc.selected_nodes()
             if current_selection:
                 current_selection = current_selection[0]
 
-        if not taggerutils.current_selection_has_metadata_node():
-            if current_selection != defines.SCENE_SELECTION_NAME:
-                new_tag_data_node = tp.Dcc.create_node(node_type='network', node_name=defines.TAG_DATA_NODE_NAME)
+        if not tag.current_selection_has_metadata_node():
+            if current_selection != tag.TagDefinitions.SCENE_SELECTION_NAME:
+                new_tag_data_node = tp.Dcc.create_node(node_type='network', node_name=tag.TagDefinitions.TAG_DATA_NODE_NAME)
                 self._fill_new_tag_data_node(new_tag_data_node, current_selection)
 
                 for editor in self._editors:
@@ -250,10 +255,10 @@ class ArtellaTagger(window.ArtellaWindow, object):
                 #     tp.Dcc.lock_attribute(node=new_tag_data_node, attribute_name='types')
 
             else:
-                new_tag_data_node = tp.Dcc.create_node(node_type='network', node_name=defines.TAG_DATA_SCENE_NAME)
+                new_tag_data_node = tp.Dcc.create_node(node_type='network', node_name=tag.TagDefinitions.TAG_DATA_SCENE_NAME)
                 tp.Dcc.clear_selection()
 
-        if current_selection == defines.SCENE_SELECTION_NAME:
+        if current_selection == tag.TagDefinitions.SCENE_SELECTION_NAME:
             tp.Dcc.clear_selection()
         else:
             tp.Dcc.select_object(current_selection)
@@ -265,7 +270,7 @@ class ArtellaTagger(window.ArtellaWindow, object):
         """
 
         if editor_widget in self._editors:
-            artellapipe.logger.warning('Editor with ID {} already exists!'.format(editor_widget.EDITOR_TYPE))
+            logger.warning('Editor with ID {} already exists!'.format(editor_widget.EDITOR_TYPE))
             return
 
         self._editors.append(editor_widget)
@@ -316,19 +321,19 @@ class ArtellaTagger(window.ArtellaWindow, object):
         :param tag_data_node:
         """
 
-        tp.Dcc.add_string_attribute(node=tag_data_node, attribute_name=defines.TAG_TYPE_ATTRIBUTE_NAME)
-        tp.Dcc.set_string_attribute_value(node=tag_data_node, attribute_name=defines.TAG_TYPE_ATTRIBUTE_NAME, attribute_value=self._project.tag_type_id)
-        tp.Dcc.unkeyable_attribute(node=tag_data_node, attribute_name=defines.TAG_TYPE_ATTRIBUTE_NAME)
-        tp.Dcc.hide_attribute(node=tag_data_node, attribute_name=defines.TAG_TYPE_ATTRIBUTE_NAME)
-        tp.Dcc.lock_attribute(node=tag_data_node, attribute_name=defines.TAG_TYPE_ATTRIBUTE_NAME)
-        tp.Dcc.add_message_attribute(node=tag_data_node, attribute_name=defines.NODE_ATTRIBUTE_NAME)
-        if not tp.Dcc.attribute_exists(node=current_selection, attribute_name=defines.TAG_DATA_ATTRIBUTE_NAME):
-            tp.Dcc.add_message_attribute(node=current_selection, attribute_name=defines.TAG_DATA_ATTRIBUTE_NAME)
-        tp.Dcc.unlock_attribute(node=current_selection, attribute_name=defines.TAG_DATA_ATTRIBUTE_NAME)
-        tp.Dcc.unlock_attribute(node=tag_data_node, attribute_name=defines.NODE_ATTRIBUTE_NAME)
-        tp.Dcc.connect_attribute(tag_data_node, defines.NODE_ATTRIBUTE_NAME, current_selection, defines.TAG_DATA_ATTRIBUTE_NAME)
-        tp.Dcc.lock_attribute(node=current_selection, attribute_name=defines.TAG_DATA_ATTRIBUTE_NAME)
-        tp.Dcc.lock_attribute(node=tag_data_node, attribute_name=defines.NODE_ATTRIBUTE_NAME)
+        tp.Dcc.add_string_attribute(node=tag_data_node, attribute_name=tag.TagDefinitions.TAG_TYPE_ATTRIBUTE_NAME)
+        tp.Dcc.set_string_attribute_value(node=tag_data_node, attribute_name=tag.TagDefinitions.TAG_TYPE_ATTRIBUTE_NAME, attribute_value=self._project.tag_type_id)
+        tp.Dcc.unkeyable_attribute(node=tag_data_node, attribute_name=tag.TagDefinitions.TAG_TYPE_ATTRIBUTE_NAME)
+        tp.Dcc.hide_attribute(node=tag_data_node, attribute_name=tag.TagDefinitions.TAG_TYPE_ATTRIBUTE_NAME)
+        tp.Dcc.lock_attribute(node=tag_data_node, attribute_name=tag.TagDefinitions.TAG_TYPE_ATTRIBUTE_NAME)
+        tp.Dcc.add_message_attribute(node=tag_data_node, attribute_name=tag.TagDefinitions.NODE_ATTRIBUTE_NAME)
+        if not tp.Dcc.attribute_exists(node=current_selection, attribute_name=tag.TagDefinitions.TAG_DATA_ATTRIBUTE_NAME):
+            tp.Dcc.add_message_attribute(node=current_selection, attribute_name=tag.TagDefinitions.TAG_DATA_ATTRIBUTE_NAME)
+        tp.Dcc.unlock_attribute(node=current_selection, attribute_name=tag.TagDefinitions.TAG_DATA_ATTRIBUTE_NAME)
+        tp.Dcc.unlock_attribute(node=tag_data_node, attribute_name=tag.TagDefinitions.NODE_ATTRIBUTE_NAME)
+        tp.Dcc.connect_attribute(tag_data_node, tag.TagDefinitions.NODE_ATTRIBUTE_NAME, current_selection, tag.TagDefinitions.TAG_DATA_ATTRIBUTE_NAME)
+        tp.Dcc.lock_attribute(node=current_selection, attribute_name=tag.TagDefinitions.TAG_DATA_ATTRIBUTE_NAME)
+        tp.Dcc.lock_attribute(node=tag_data_node, attribute_name=tag.TagDefinitions.NODE_ATTRIBUTE_NAME)
         tp.Dcc.select_object(current_selection)
 
 
