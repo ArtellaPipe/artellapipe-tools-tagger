@@ -1,0 +1,7 @@
+artellapipe.tools.tagger.editors.descriptioneditor module
+=========================================================
+
+.. automodule:: artellapipe.tools.tagger.editors.descriptioneditor
+   :members:
+   :undoc-members:
+   :show-inheritance:

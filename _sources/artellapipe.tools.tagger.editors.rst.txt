@@ -1,0 +1,19 @@
+artellapipe.tools.tagger.editors package
+========================================
+
+Submodules
+----------
+
+.. toctree::
+
+   artellapipe.tools.tagger.editors.descriptioneditor
+   artellapipe.tools.tagger.editors.nameeditor
+   artellapipe.tools.tagger.editors.typeeditor
+
+Module contents
+---------------
+
+.. automodule:: artellapipe.tools.tagger.editors
+   :members:
+   :undoc-members:
+   :show-inheritance:

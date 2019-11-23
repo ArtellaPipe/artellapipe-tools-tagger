@@ -1,0 +1,17 @@
+artellapipe.tools.tagger.core package
+=====================================
+
+Submodules
+----------
+
+.. toctree::
+
+   artellapipe.tools.tagger.core.tagger
+
+Module contents
+---------------
+
+.. automodule:: artellapipe.tools.tagger.core
+   :members:
+   :undoc-members:
+   :show-inheritance:
