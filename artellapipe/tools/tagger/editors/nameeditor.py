@@ -85,5 +85,6 @@ class NameEditor(taggereditor.TaggerEditor, object):
             tp.Dcc.add_string_attribute(node=tag_data_node, attribute_name='name')
 
         tp.Dcc.unlock_attribute(node=tag_data_node, attribute_name='name')
-        tp.Dcc.set_string_attribute_value(node=tag_data_node, attribute_name='name', attribute_value=self._name_line.text())
+        tp.Dcc.set_string_attribute_value(
+            node=tag_data_node, attribute_name='name', attribute_value=self._name_line.text())
         tp.Dcc.lock_attribute(node=tag_data_node, attribute_name='name')

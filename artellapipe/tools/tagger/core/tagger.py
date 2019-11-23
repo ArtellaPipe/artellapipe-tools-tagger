@@ -13,8 +13,7 @@ __maintainer__ = "Tomas Poveda"
 __email__ = "tpovedatd@gmail.com"
 
 import logging
-import  inspect
-import importlib
+import inspect
 from functools import partial
 
 from Qt.QtCore import *
@@ -348,9 +347,11 @@ class ArtellaTagger(tool.Tool, object):
 
         if current_selection:
             if not tp.Dcc.attribute_exists(
-                    node=current_selection, attribute_name=artellapipe.TagsMgr().TagDefinitions.TAG_DATA_ATTRIBUTE_NAME):
+                    node=current_selection,
+                    attribute_name=artellapipe.TagsMgr().TagDefinitions.TAG_DATA_ATTRIBUTE_NAME):
                 tp.Dcc.add_message_attribute(
-                    node=current_selection, attribute_name=artellapipe.TagsMgr().TagDefinitions.TAG_DATA_ATTRIBUTE_NAME)
+                    node=current_selection,
+                    attribute_name=artellapipe.TagsMgr().TagDefinitions.TAG_DATA_ATTRIBUTE_NAME)
             tp.Dcc.unlock_attribute(
                 node=current_selection, attribute_name=artellapipe.TagsMgr().TagDefinitions.TAG_DATA_ATTRIBUTE_NAME)
             tp.Dcc.unlock_attribute(

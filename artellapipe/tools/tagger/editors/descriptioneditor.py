@@ -83,5 +83,6 @@ class DescriptionEditor(taggereditor.TaggerEditor, object):
             tp.Dcc.add_string_attribute(node=tag_data_node, attribute_name='description')
 
         tp.Dcc.unlock_attribute(node=tag_data_node, attribute_name='description')
-        tp.Dcc.set_string_attribute_value(node=tag_data_node, attribute_name='description', attribute_value=self._description_text.toPlainText())
+        tp.Dcc.set_string_attribute_value(
+            node=tag_data_node, attribute_name='description', attribute_value=self._description_text.toPlainText())
         tp.Dcc.lock_attribute(node=tag_data_node, attribute_name='description')

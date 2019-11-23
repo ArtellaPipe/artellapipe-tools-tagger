@@ -57,7 +57,8 @@ class TaggerEditor(base.BaseWidget, object):
         :param sel: list(str)
         """
 
-        raise NotImplementedError('update_tag_buttons_state() function not implemented in {}'.format(self.__class__.__name__))
+        raise NotImplementedError(
+            'update_tag_buttons_state() function not implemented in {}'.format(self.__class__.__name__))
 
     @decorators.abstractmethod
     def fill_tag_node(self, tag_data_node, *args, **kwargs):
