@@ -172,67 +172,8 @@
 
            <div itemprop="articleBody">
             
-  <div class="section" id="module-artellapipe.tools.tagger.core.tagger">
-<span id="artellapipe-tools-tagger-core-tagger-module"></span><h1>artellapipe.tools.tagger.core.tagger module<a class="headerlink" href="#module-artellapipe.tools.tagger.core.tagger" title="Permalink to this headline">¶</a></h1>
-<p>Tool used to manage metadata for Artella Assets</p>
-<dl class="class">
-<dt id="artellapipe.tools.tagger.core.tagger.ArtellaTagger">
-<em class="property">class </em><code class="sig-prename descclassname">artellapipe.tools.tagger.core.tagger.</code><code class="sig-name descname">ArtellaTagger</code><span class="sig-paren">(</span><em class="sig-param">project</em>, <em class="sig-param">config</em><span class="sig-paren">)</span><a class="headerlink" href="#artellapipe.tools.tagger.core.tagger.ArtellaTagger" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">artellapipe.core.tool.Tool</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="method">
-<dt id="artellapipe.tools.tagger.core.tagger.ArtellaTagger.add_editor">
-<code class="sig-name descname">add_editor</code><span class="sig-paren">(</span><em class="sig-param">editor_widget</em><span class="sig-paren">)</span><a class="headerlink" href="#artellapipe.tools.tagger.core.tagger.ArtellaTagger.add_editor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds a new editor to the stack widget
-:param editor_widget: TaggerEditor</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="artellapipe.tools.tagger.core.tagger.ArtellaTagger.create_new_tag_data_node_for_current_selection">
-<code class="sig-name descname">create_new_tag_data_node_for_current_selection</code><span class="sig-paren">(</span><em class="sig-param">asset_type=None</em><span class="sig-paren">)</span><a class="headerlink" href="#artellapipe.tools.tagger.core.tagger.ArtellaTagger.create_new_tag_data_node_for_current_selection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a new tag data node with the info af all available editors
-:param asset_type: str or None (optional)</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="artellapipe.tools.tagger.core.tagger.ArtellaTagger.get_main_layout">
-<code class="sig-name descname">get_main_layout</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#artellapipe.tools.tagger.core.tagger.ArtellaTagger.get_main_layout" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function that generates the main layout used by the widget
-Override if necessary on new widgets
-:return: QLayout</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="artellapipe.tools.tagger.core.tagger.ArtellaTagger.post_attacher_set">
-<code class="sig-name descname">post_attacher_set</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#artellapipe.tools.tagger.core.tagger.ArtellaTagger.post_attacher_set" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function that is called once an attacher has been set
-Override in child classes</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="artellapipe.tools.tagger.core.tagger.ArtellaTagger.remove_tag_data_node">
-<code class="sig-name descname">remove_tag_data_node</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#artellapipe.tools.tagger.core.tagger.ArtellaTagger.remove_tag_data_node" title="Permalink to this definition">¶</a></dt>
-<dd><p>Removes the tag data node associated to the current selected Maya object</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="artellapipe.tools.tagger.core.tagger.ArtellaTagger.staticMetaObject">
-<code class="sig-name descname">staticMetaObject</code><em class="property"> = &lt;PySide2.QtCore.QMetaObject object&gt;</em><a class="headerlink" href="#artellapipe.tools.tagger.core.tagger.ArtellaTagger.staticMetaObject" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="artellapipe.tools.tagger.core.tagger.ArtellaTagger.tagDataCreated">
-<code class="sig-name descname">tagDataCreated</code><em class="property"> = &lt;PySide2.QtCore.Signal object&gt;</em><a class="headerlink" href="#artellapipe.tools.tagger.core.tagger.ArtellaTagger.tagDataCreated" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="artellapipe.tools.tagger.core.tagger.ArtellaTagger.ui">
-<code class="sig-name descname">ui</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#artellapipe.tools.tagger.core.tagger.ArtellaTagger.ui" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function that sets up the ui of the widget
-Override it on new widgets (but always call super)</p>
-</dd></dl>
-
-</dd></dl>
-
+  <div class="section" id="artellapipe-tools-tagger-core-tagger-module">
+<h1>artellapipe.tools.tagger.core.tagger module<a class="headerlink" href="#artellapipe-tools-tagger-core-tagger-module" title="Permalink to this headline">¶</a></h1>
 </div>
 
 
