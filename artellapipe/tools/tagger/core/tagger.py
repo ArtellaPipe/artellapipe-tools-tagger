@@ -25,14 +25,13 @@ from tpQtLib.widgets import stack, splitters, breadcrumb
 
 import artellapipe
 from artellapipe.utils import resource
-from artellapipe.core import tool
 from artellapipe.tools.tagger.widgets import taggerinfo, taggereditor
 
 
 LOGGER = logging.getLogger()
 
 
-class ArtellaTagger(tool.Tool, object):
+class ArtellaTagger(artellapipe.Tool, object):
 
     tagDataCreated = Signal()
 
