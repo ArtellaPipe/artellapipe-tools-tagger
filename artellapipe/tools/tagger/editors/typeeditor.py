@@ -12,6 +12,7 @@ __license__ = "MIT"
 __maintainer__ = "Tomas Poveda"
 __email__ = "tpovedatd@gmail.com"
 
+import logging
 from functools import partial
 
 from Qt.QtCore import *
@@ -22,8 +23,10 @@ import tpDccLib as tp
 from tpQtLib.core import base
 from tpQtLib.widgets import grid
 
-from artellapipe.utils import tag
-from artellapipe.tools.tagger.core import taggereditor
+import artellapipe
+from artellapipe.tools.tagger.widgets import taggereditor
+
+LOGGER = logging.getLogger()
 
 
 class TypeEditor(taggereditor.TaggerEditor, object):
@@ -48,11 +51,25 @@ class TypeEditor(taggereditor.TaggerEditor, object):
     def initialize(self):
         self._type_grid.clear()
 
-        tag_types = self._project.tag_types
+        tag_types = artellapipe.TagsMgr().get_tag_types()
+        if not tag_types:
+            LOGGER.warning('No Tag Types defined in current project!')
+            return
+
         for tag_type in tag_types:
             tag_widget = TaggerTypeWidget(type_title=tag_type)
             tag_widget._btn.toggled.connect(partial(self.update_data, tag_widget.get_name()))
             self._type_grid.add_widget_first_empty_cell(tag_widget)
+
+    def reset(self):
+        """
+        Function that resets all editor information
+        """
+
+        try:
+            self._type_grid.blockSignals(True)
+        finally:
+            self._type_grid.blockSignals(False)
 
     def update_tag_buttons_state(self, sel=None):
         """
@@ -60,7 +77,7 @@ class TypeEditor(taggereditor.TaggerEditor, object):
         :param name: str, name of the type tag to add/remove
         """
 
-        tag_data_node = tag.get_tag_data_node_from_current_selection(sel)
+        tag_data_node = artellapipe.TagsMgr().get_tag_data_node_from_current_selection(sel)
         if tag_data_node is None:
             return
 

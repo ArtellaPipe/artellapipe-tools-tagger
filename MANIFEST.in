@@ -1,1 +1,2 @@
-include source/artellapipe/tools/resources/images/*.*
+include artellapipe/tools/tagger/__logging__.ini
+include artellapipe/tools/tagger/resources/images/*.*

@@ -18,7 +18,8 @@ from Qt.QtWidgets import *
 from tpQtLib.core import base
 from tpQtLib.widgets import splitters
 
-from artellapipe.utils import resource, tag
+import artellapipe
+from artellapipe.utils import resource
 
 
 class TaggerInfoWidget(base.BaseWidget, object):
@@ -43,8 +44,9 @@ class TaggerInfoWidget(base.BaseWidget, object):
         self._curr_info_lbl = QLabel('')
         self._curr_info_lbl.setAlignment(Qt.AlignCenter)
 
-        self._new_tagger_node_btn = QPushButton('Create Tag Data node for "{0}"?'.format(tag.get_current_selection()))
-        self._new_tagger_node_btn.setIcon(resource.ResourceManager.instance().icon('tag_add'))
+        self._new_tagger_node_btn = QPushButton(
+            'Create Tag Data node for "{0}"?'.format(artellapipe.TagsMgr().get_current_selection()))
+        self._new_tagger_node_btn.setIcon(resource.ResourceManager().icon('tag_add'))
 
         self.main_layout.addWidget(frame)
         frame_layout.addWidget(self._curr_info_lbl)
@@ -59,14 +61,14 @@ class TaggerInfoWidget(base.BaseWidget, object):
         Updates the current widget
         """
 
-        current_selection = tag.get_current_selection()
+        current_selection = artellapipe.TagsMgr().get_current_selection()
 
-        if not tag.current_selection_has_metadata_node():
+        if not artellapipe.TagsMgr().current_selection_has_metadata_node():
             self._curr_info_lbl.setText('Selected object "{0}" has not valid metadata info!'.format(current_selection))
             self._new_tagger_node_btn.setText('Create Tag Data node for "{0}"?'.format(current_selection))
             return
 
-        if not tag.check_if_current_selected_metadata_node_has_valid_info():
+        if not artellapipe.TagsMgr().check_if_current_selected_metadata_node_has_valid_info():
             self._curr_info_lbl.setText('Object "{0}" has not valid Tag Data information!'.format(current_selection))
             return
 

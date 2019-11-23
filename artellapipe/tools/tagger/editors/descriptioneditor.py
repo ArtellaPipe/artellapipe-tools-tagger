@@ -18,8 +18,8 @@ from Qt.QtWidgets import *
 
 import tpDccLib as tp
 
-from artellapipe.utils import tag
-from artellapipe.tools.tagger.core import taggereditor
+import artellapipe
+from artellapipe.tools.tagger.widgets import taggereditor
 
 
 class DescriptionEditor(taggereditor.TaggerEditor, object):
@@ -45,13 +45,24 @@ class DescriptionEditor(taggereditor.TaggerEditor, object):
 
         pass
 
+    def reset(self):
+        """
+        Function that resets all editor information
+        """
+
+        try:
+            self._description_text.blockSignals(True)
+            self._description_text.setText('')
+        finally:
+            self._description_text.blockSignals(False)
+
     def update_tag_buttons_state(self, sel=None):
         """
         Updates the selection tag attribute of the tag data node
         :param name: str, name of the selection tag to add/remove
         """
 
-        tag_data_node = tag.get_tag_data_node_from_current_selection(sel)
+        tag_data_node = artellapipe.TagsMgr().get_tag_data_node_from_current_selection(sel)
         if tag_data_node is None:
             return
 

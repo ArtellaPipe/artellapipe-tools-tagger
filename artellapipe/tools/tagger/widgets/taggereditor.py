@@ -18,7 +18,7 @@ from tpPyUtils import decorators
 
 from tpQtLib.core import base
 
-from artellapipe.utils import tag
+import artellapipe
 
 
 class TaggerEditor(base.BaseWidget, object):
@@ -68,6 +68,14 @@ class TaggerEditor(base.BaseWidget, object):
 
         raise NotImplementedError('fill_tag_node() function not implemented in {}'.format(self.__class__.__name__))
 
+    @decorators.abstractmethod
+    def reset(self):
+        """
+        Function that resets all editor information
+        """
+
+        raise NotImplementedError('reset() function not implemented in {}'.format(self.__class__.__name__))
+
     def update_data(self, data=None, *args, **kwargs):
         """
         Update the data in the tag data node that is managed by this editor
@@ -76,7 +84,7 @@ class TaggerEditor(base.BaseWidget, object):
 
         sel = kwargs.pop('sel', None)
 
-        tag_data_node = tag.get_tag_data_node_from_current_selection(sel)
+        tag_data_node = artellapipe.TagsMgr().get_tag_data_node_from_current_selection(sel)
         if tag_data_node is None:
             return
 
