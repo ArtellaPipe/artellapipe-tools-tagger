@@ -15,11 +15,11 @@ __email__ = "tpovedatd@gmail.com"
 from Qt.QtCore import *
 from Qt.QtWidgets import *
 
-from tpQtLib.core import base
-from tpQtLib.widgets import splitters
+import tpDcc
+from tpDcc.libs.qt.core import base
+from tpDcc.libs.qt.widgets import splitters
 
 import artellapipe
-from artellapipe.utils import resource
 
 
 class TaggerInfoWidget(base.BaseWidget, object):
@@ -46,7 +46,7 @@ class TaggerInfoWidget(base.BaseWidget, object):
 
         self._new_tagger_node_btn = QPushButton(
             'Create Tag Data node for "{0}"?'.format(artellapipe.TagsMgr().get_current_selection()))
-        self._new_tagger_node_btn.setIcon(resource.ResourceManager().icon('tag_add'))
+        self._new_tagger_node_btn.setIcon(tpDcc.ResourcesMgr().icon('tag_add'))
 
         self.main_layout.addWidget(frame)
         frame_layout.addWidget(self._curr_info_lbl)

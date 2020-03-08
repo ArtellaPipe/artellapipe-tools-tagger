@@ -18,10 +18,10 @@ from functools import partial
 from Qt.QtCore import *
 from Qt.QtWidgets import *
 
-import tpDccLib as tp
+import tpDcc as tp
 
-from tpQtLib.core import base
-from tpQtLib.widgets import grid
+from tpDcc.libs.qt.core import base
+from tpDcc.libs.qt.widgets import grid
 
 import artellapipe
 from artellapipe.tools.tagger.widgets import taggereditor
