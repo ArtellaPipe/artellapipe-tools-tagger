@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -36,7 +36,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="artellapipe.tools.tagger.widgets.taggerinfo module" href="artellapipe.tools.tagger.widgets.taggerinfo.html" />
-    <link rel="prev" title="artellapipe.tools.tagger.widgets package" href="artellapipe.tools.tagger.widgets.html" /> 
+    <link rel="prev" title="artellapipe.tools.tagger.widgets.tagger module" href="artellapipe.tools.tagger.widgets.tagger.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -172,70 +172,8 @@
 
            <div itemprop="articleBody">
             
-  <div class="section" id="module-artellapipe.tools.tagger.widgets.taggereditor">
-<span id="artellapipe-tools-tagger-widgets-taggereditor-module"></span><h1>artellapipe.tools.tagger.widgets.taggereditor module<a class="headerlink" href="#module-artellapipe.tools.tagger.widgets.taggereditor" title="Permalink to this headline">¶</a></h1>
-<p>Module that contains core implementation for tagger editors</p>
-<dl class="class">
-<dt id="artellapipe.tools.tagger.widgets.taggereditor.TaggerEditor">
-<em class="property">class </em><code class="sig-prename descclassname">artellapipe.tools.tagger.widgets.taggereditor.</code><code class="sig-name descname">TaggerEditor</code><span class="sig-paren">(</span><em class="sig-param">project</em>, <em class="sig-param">parent=None</em><span class="sig-paren">)</span><a class="headerlink" href="#artellapipe.tools.tagger.widgets.taggereditor.TaggerEditor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tpQtLib.core.base.BaseWidget</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="attribute">
-<dt id="artellapipe.tools.tagger.widgets.taggereditor.TaggerEditor.EDITOR_TYPE">
-<code class="sig-name descname">EDITOR_TYPE</code><em class="property"> = None</em><a class="headerlink" href="#artellapipe.tools.tagger.widgets.taggereditor.TaggerEditor.EDITOR_TYPE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="artellapipe.tools.tagger.widgets.taggereditor.TaggerEditor.dataUpdated">
-<code class="sig-name descname">dataUpdated</code><em class="property"> = &lt;PySide2.QtCore.Signal object&gt;</em><a class="headerlink" href="#artellapipe.tools.tagger.widgets.taggereditor.TaggerEditor.dataUpdated" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="artellapipe.tools.tagger.widgets.taggereditor.TaggerEditor.fill_tag_node">
-<code class="sig-name descname">fill_tag_node</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#artellapipe.tools.tagger.widgets.taggereditor.TaggerEditor.fill_tag_node" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fills given tag node with the data managed by this editor
-:param tag_data_node: str</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="artellapipe.tools.tagger.widgets.taggereditor.TaggerEditor.initialize">
-<code class="sig-name descname">initialize</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#artellapipe.tools.tagger.widgets.taggereditor.TaggerEditor.initialize" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initializes tagger editor</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="artellapipe.tools.tagger.widgets.taggereditor.TaggerEditor.project">
-<em class="property">property </em><code class="sig-name descname">project</code><a class="headerlink" href="#artellapipe.tools.tagger.widgets.taggereditor.TaggerEditor.project" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns project associated to this editor
-:return: ArtellaProject</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="artellapipe.tools.tagger.widgets.taggereditor.TaggerEditor.reset">
-<code class="sig-name descname">reset</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#artellapipe.tools.tagger.widgets.taggereditor.TaggerEditor.reset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function that resets all editor information</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="artellapipe.tools.tagger.widgets.taggereditor.TaggerEditor.staticMetaObject">
-<code class="sig-name descname">staticMetaObject</code><em class="property"> = &lt;PySide2.QtCore.QMetaObject object&gt;</em><a class="headerlink" href="#artellapipe.tools.tagger.widgets.taggereditor.TaggerEditor.staticMetaObject" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="artellapipe.tools.tagger.widgets.taggereditor.TaggerEditor.update_data">
-<code class="sig-name descname">update_data</code><span class="sig-paren">(</span><em class="sig-param">data=None</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#artellapipe.tools.tagger.widgets.taggereditor.TaggerEditor.update_data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Update the data in the tag data node that is managed by this editor
-:param data: variant</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="artellapipe.tools.tagger.widgets.taggereditor.TaggerEditor.update_tag_buttons_state">
-<code class="sig-name descname">update_tag_buttons_state</code><span class="sig-paren">(</span><em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#artellapipe.tools.tagger.widgets.taggereditor.TaggerEditor.update_tag_buttons_state" title="Permalink to this definition">¶</a></dt>
-<dd><p>Updates the state of the tag buttons
-:param sel: list(str)</p>
-</dd></dl>
-
-</dd></dl>
-
+  <div class="section" id="artellapipe-tools-tagger-widgets-taggereditor-module">
+<h1>artellapipe.tools.tagger.widgets.taggereditor module<a class="headerlink" href="#artellapipe-tools-tagger-widgets-taggereditor-module" title="Permalink to this headline">¶</a></h1>
 </div>
 
 
@@ -253,7 +191,7 @@
         <a href="artellapipe.tools.tagger.widgets.taggerinfo.html" class="btn btn-neutral float-right" title="artellapipe.tools.tagger.widgets.taggerinfo module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="artellapipe.tools.tagger.widgets.html" class="btn btn-neutral float-left" title="artellapipe.tools.tagger.widgets package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="artellapipe.tools.tagger.widgets.tagger.html" class="btn btn-neutral float-left" title="artellapipe.tools.tagger.widgets.tagger module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

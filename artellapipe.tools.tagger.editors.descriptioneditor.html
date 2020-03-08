@@ -21,10 +21,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -172,64 +172,8 @@
 
            <div itemprop="articleBody">
             
-  <div class="section" id="module-artellapipe.tools.tagger.editors.descriptioneditor">
-<span id="artellapipe-tools-tagger-editors-descriptioneditor-module"></span><h1>artellapipe.tools.tagger.editors.descriptioneditor module<a class="headerlink" href="#module-artellapipe.tools.tagger.editors.descriptioneditor" title="Permalink to this headline">¶</a></h1>
-<p>Module that contains implementation for description editor</p>
-<dl class="class">
-<dt id="artellapipe.tools.tagger.editors.descriptioneditor.DescriptionEditor">
-<em class="property">class </em><code class="sig-prename descclassname">artellapipe.tools.tagger.editors.descriptioneditor.</code><code class="sig-name descname">DescriptionEditor</code><span class="sig-paren">(</span><em class="sig-param">project</em>, <em class="sig-param">parent=None</em><span class="sig-paren">)</span><a class="headerlink" href="#artellapipe.tools.tagger.editors.descriptioneditor.DescriptionEditor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="artellapipe.tools.tagger.widgets.taggereditor.html#artellapipe.tools.tagger.widgets.taggereditor.TaggerEditor" title="artellapipe.tools.tagger.widgets.taggereditor.TaggerEditor"><code class="xref py py-class docutils literal notranslate"><span class="pre">artellapipe.tools.tagger.widgets.taggereditor.TaggerEditor</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="attribute">
-<dt id="artellapipe.tools.tagger.editors.descriptioneditor.DescriptionEditor.EDITOR_TYPE">
-<code class="sig-name descname">EDITOR_TYPE</code><em class="property"> = 'Description'</em><a class="headerlink" href="#artellapipe.tools.tagger.editors.descriptioneditor.DescriptionEditor.EDITOR_TYPE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="artellapipe.tools.tagger.editors.descriptioneditor.DescriptionEditor.fill_tag_node">
-<code class="sig-name descname">fill_tag_node</code><span class="sig-paren">(</span><em class="sig-param">tag_data_node</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#artellapipe.tools.tagger.editors.descriptioneditor.DescriptionEditor.fill_tag_node" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fills given tag node with the data managed by this editor
-:param tag_data_node: str</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="artellapipe.tools.tagger.editors.descriptioneditor.DescriptionEditor.initialize">
-<code class="sig-name descname">initialize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#artellapipe.tools.tagger.editors.descriptioneditor.DescriptionEditor.initialize" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initializes tagger editor</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="artellapipe.tools.tagger.editors.descriptioneditor.DescriptionEditor.reset">
-<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#artellapipe.tools.tagger.editors.descriptioneditor.DescriptionEditor.reset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function that resets all editor information</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="artellapipe.tools.tagger.editors.descriptioneditor.DescriptionEditor.setup_signals">
-<code class="sig-name descname">setup_signals</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#artellapipe.tools.tagger.editors.descriptioneditor.DescriptionEditor.setup_signals" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function that set up signals of the widget</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="artellapipe.tools.tagger.editors.descriptioneditor.DescriptionEditor.staticMetaObject">
-<code class="sig-name descname">staticMetaObject</code><em class="property"> = &lt;PySide2.QtCore.QMetaObject object&gt;</em><a class="headerlink" href="#artellapipe.tools.tagger.editors.descriptioneditor.DescriptionEditor.staticMetaObject" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="artellapipe.tools.tagger.editors.descriptioneditor.DescriptionEditor.ui">
-<code class="sig-name descname">ui</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#artellapipe.tools.tagger.editors.descriptioneditor.DescriptionEditor.ui" title="Permalink to this definition">¶</a></dt>
-<dd><p>Function that sets up the ui of the widget
-Override it on new widgets (but always call super)</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="artellapipe.tools.tagger.editors.descriptioneditor.DescriptionEditor.update_tag_buttons_state">
-<code class="sig-name descname">update_tag_buttons_state</code><span class="sig-paren">(</span><em class="sig-param">sel=None</em><span class="sig-paren">)</span><a class="headerlink" href="#artellapipe.tools.tagger.editors.descriptioneditor.DescriptionEditor.update_tag_buttons_state" title="Permalink to this definition">¶</a></dt>
-<dd><p>Updates the selection tag attribute of the tag data node
-:param name: str, name of the selection tag to add/remove</p>
-</dd></dl>
-
-</dd></dl>
-
+  <div class="section" id="artellapipe-tools-tagger-editors-descriptioneditor-module">
+<h1>artellapipe.tools.tagger.editors.descriptioneditor module<a class="headerlink" href="#artellapipe-tools-tagger-editors-descriptioneditor-module" title="Permalink to this headline">¶</a></h1>
 </div>
 
 

@@ -1,0 +1,7 @@
+artellapipe.tools.tagger.widgets.tagger module
+==============================================
+
+.. automodule:: artellapipe.tools.tagger.widgets.tagger
+   :members:
+   :undoc-members:
+   :show-inheritance:

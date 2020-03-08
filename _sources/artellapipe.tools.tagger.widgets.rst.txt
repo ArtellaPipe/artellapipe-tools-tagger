@@ -6,6 +6,7 @@ Submodules
 
 .. toctree::
 
+   artellapipe.tools.tagger.widgets.tagger
    artellapipe.tools.tagger.widgets.taggereditor
    artellapipe.tools.tagger.widgets.taggerinfo
 
