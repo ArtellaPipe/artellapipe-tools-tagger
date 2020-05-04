@@ -21,7 +21,7 @@ from Qt.QtWidgets import *
 
 import tpDcc as tp
 from tpDcc.libs.python import python
-from tpDcc.libs.qt.widgets import stack, splitters, breadcrumb
+from tpDcc.libs.qt.widgets import stack, dividers, breadcrumb
 
 import artellapipe
 from artellapipe.tools.tagger.widgets import taggerinfo, taggereditor
@@ -81,7 +81,7 @@ class ArtellaTaggerWidget(artellapipe.ToolWidget):
         # top_layout.addWidget(import_tag_data_btn)
         top_layout.addItem(QSpacerItem(10, 0, QSizePolicy.Expanding, QSizePolicy.Preferred))
 
-        self.main_layout.addLayout(splitters.SplitterLayout())
+        self.main_layout.addLayout(dividers.DividerLayout())
 
         # ======================================================================================
 

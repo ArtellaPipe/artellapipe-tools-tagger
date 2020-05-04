@@ -17,7 +17,7 @@ from Qt.QtWidgets import *
 
 import tpDcc
 from tpDcc.libs.qt.core import base
-from tpDcc.libs.qt.widgets import splitters
+from tpDcc.libs.qt.widgets import dividers
 
 import artellapipe
 
@@ -50,7 +50,7 @@ class TaggerInfoWidget(base.BaseWidget, object):
 
         self.main_layout.addWidget(frame)
         frame_layout.addWidget(self._curr_info_lbl)
-        frame_layout.addLayout(splitters.SplitterLayout())
+        frame_layout.addLayout(dividers.DividerLayout())
         frame_layout.addWidget(self._new_tagger_node_btn)
 
     def setup_signals(self):
