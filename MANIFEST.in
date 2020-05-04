@@ -1,2 +1,4 @@
 include artellapipe/tools/tagger/__logging__.ini
 recursive-include artellapipe/tools/tagger/resources/* *.*
+include versioneer.py
+include artellapipe/tools/tagger/_version.py
